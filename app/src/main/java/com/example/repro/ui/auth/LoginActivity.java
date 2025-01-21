@@ -3,6 +3,7 @@ package com.example.repro.ui.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,15 @@ import com.example.repro.MainActivity;
 import com.example.repro.R;
 import com.example.repro.RetrofitClient;
 
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,36 +76,57 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void loginUser(String username, String password) {
+    private void loginUser(String email, String password) {
         ApiService apiInterface = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<String> call = apiInterface.loginUser(username, password);
 
-        call.enqueue(new Callback<String>() {
+        // Membuat map untuk parameter
+        Map<String, String> jsonParams = new HashMap<>();
+        jsonParams.put("email", email);
+        jsonParams.put("password", password);
+
+        // Konversi map menjadi RequestBody dengan format JSON
+        RequestBody body = RequestBody.create(MediaType.parse("application/json"), new JSONObject(jsonParams).toString());
+
+        // Mengirimkan request login ke server
+        Call<ResponseBody> call = apiInterface.loginUser(body);
+
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    String result = response.body();
-                    if (result != null && result.equalsIgnoreCase("Login successful")) {
-                        // Login berhasil
-                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    try {
+                        // Membaca response body sebagai string
+                        String result = response.body().string();  // Convert ResponseBody to String
 
-                        // Redirect to MainActivity
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish(); // Optional, untuk menutup LoginActivity
-                    } else {
-                        // Gagal login
-                        Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                        if (result != null && result.contains("Login successful")) {
+                            // Login berhasil
+                            Log.d("LoginActivity", "Login successful: " + result);
+                            Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+
+                            // Redirect to MainActivity
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish(); // Optional, untuk menutup LoginActivity
+                        } else {
+                            // Gagal login
+                            Log.e("LoginActivity", "Login failed: Invalid email or password. Response: " + result);
+                            Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (IOException e) {
+                        Log.e("LoginActivity", "Error reading response body: " + e.getMessage(), e);
+                        Toast.makeText(LoginActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Respon server tidak sukses
+                    Log.e("LoginActivity", "Login failed: Response code " + response.code() + ", message: " + response.message());
                     Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 // Kesalahan koneksi atau server
+                Log.e("LoginActivity", "Login error: " + t.getMessage(), t);
                 Toast.makeText(LoginActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
