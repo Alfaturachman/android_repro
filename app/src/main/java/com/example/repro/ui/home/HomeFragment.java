@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,8 +22,8 @@ import com.example.repro.databinding.FragmentHomeBinding;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-
-    private LineChart lineChart;  // Mengubah barChart menjadi lineChart
+    private ScrollView ScrollViewPemasok, ScrollViewPengelola, ScrollViewAdmin;
+    private LineChart laporanDataPemasok, laporanDataPengelola;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,7 +37,7 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         // Mengambil LineChart dari binding
-        lineChart = binding.lineChart;
+        laporanDataPemasok = binding.laporanDataPemasok;
 
         // Siapkan data untuk LineChart
         ArrayList<Entry> entries = new ArrayList<>();
@@ -52,10 +54,10 @@ public class HomeFragment extends Fragment {
         LineData lineData = new LineData(dataSet);
 
         // Set data ke chart
-        lineChart.setData(lineData);
+        laporanDataPemasok.setData(lineData);
 
         // Menampilkan chart
-        lineChart.invalidate();
+        laporanDataPemasok.invalidate();
 
         // Kembalikan root view
         return root;
