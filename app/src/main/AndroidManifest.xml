@@ -9,14 +9,14 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_repro_white"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_repro_white"
         android:supportsRtl="true"
         android:theme="@style/Theme.Repro"
         tools:targetApi="31">
 
-        <!-- LoginActivity sebagai halaman awal -->
+        <!-- LoginActivity -->
         <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="true"
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Aktivitas Register -->
+        <!-- RegisterActivity -->
         <activity
             android:name=".ui.auth.RegisterActivity"
             android:exported="true"

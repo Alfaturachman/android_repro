@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (result != null && result.contains("Login successful")) {
                             // Login berhasil
                             Log.d("LoginActivity", "Login successful: " + result);
-                            Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Login berhasil", Toast.LENGTH_SHORT).show();
 
                             // Redirect to MainActivity
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
