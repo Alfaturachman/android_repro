@@ -18,9 +18,9 @@
             android:paddingTop="8dp"
             android:paddingBottom="16dp">
 
-            <!-- CardView content -->
+            <!-- Pemasok CardView content -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView_total_belum_ambil"
+                android:id="@+id/cardViewPemasokTotalBelumAmbil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp"
@@ -36,7 +36,7 @@
                     android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/total_belum_ambil"
+                        android:id="@+id/textView298398"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -59,7 +59,7 @@
                             android:src="@drawable/ic_menu_slideshow" />
 
                         <TextView
-                            android:id="@+id/total_belum_ambil_kg"
+                            android:id="@+id/pemasokTotalBelumAmbil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -69,7 +69,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/asdff"
+                            android:id="@+id/textView456"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
@@ -82,9 +82,9 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CardView content -->
+            <!-- Pemasok CardView content -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView_total_sudah_ambil"
+                android:id="@+id/cardViewPemasokTotalSudahAmbil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp"
@@ -100,7 +100,7 @@
                     android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/total_sudah_ambil"
+                        android:id="@+id/textView3467854"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -123,7 +123,7 @@
                             android:src="@drawable/ic_menu_gallery" />
 
                         <TextView
-                            android:id="@+id/total_sudah_ambil_kg"
+                            android:id="@+id/pemasokTotalSudahAmbil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -133,7 +133,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/asdadsffff"
+                            android:id="@+id/textView83490"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
@@ -146,9 +146,9 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- CardView content -->
+            <!-- Pemasok CardView content -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
+                android:id="@+id/cardViewPemasokLaporanData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="8dp"
@@ -164,7 +164,7 @@
                     android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/textView434"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"

@@ -118,15 +118,18 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(result);
                             String userEmail = jsonResponse.getString("email");
                             String userId = jsonResponse.getString("id_user");
+                            String userLevel = jsonResponse.getString("level");
 
-                            Log.d("SharedPreferences", "ID User: " + userId);
-                            Log.d("SharedPreferences", "Email User: " + userEmail);
+                            Log.d("SharedPreferences", "User ID: " + userId);
+                            Log.d("SharedPreferences", "User Email: " + userEmail);
+                            Log.d("SharedPreferences", "User Level: " + userLevel);
 
                             // Menyimpan data pengguna di SharedPreferences
                             SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("email", userEmail);
                             editor.putString("id_user", userId);
+                            editor.putString("email", userEmail);
+                            editor.putString("level", userLevel);
                             editor.apply();
 
                             // Redirect to MainActivity
