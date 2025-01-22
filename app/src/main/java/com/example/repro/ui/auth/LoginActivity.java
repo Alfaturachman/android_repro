@@ -45,6 +45,16 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.btn_login);
         pagesRegister = findViewById(R.id.btn_halaman_register);
 
+        // Periksa SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        String userId = sharedPreferences.getString("id_user", null);
+
+        if (userId != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         // Handle login button click
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
