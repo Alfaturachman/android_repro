@@ -15,15 +15,8 @@ public interface ApiService {
     @POST("login.php")
     Call<ResponseBody> loginUser(@Body RequestBody body);
 
-    @POST("register.php")
-    Call<String> registerUser(
-            @Query("name") String name,
-            @Query("business_name") String businessName,
-            @Query("phone") String phone,
-            @Query("address") String address,
-            @Query("email") String email,
-            @Query("password") String password
-    );
+    @POST("post_pemasok.php")
+    Call<ResponseBody> registerUser(@Body RequestBody body);
 
     @GET("get_ambil.php")
     Call<List<Ambil>> getAmbil();
