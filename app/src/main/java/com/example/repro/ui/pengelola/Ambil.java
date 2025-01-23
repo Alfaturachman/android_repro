@@ -1,4 +1,4 @@
-package com.example.repro.api;
+package com.example.repro.ui.pengelola;
 import com.google.gson.annotations.SerializedName;
 public class Ambil {
 

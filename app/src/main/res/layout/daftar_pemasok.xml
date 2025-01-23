@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="14dp"
         android:elevation="4dp"
         app:cardCornerRadius="8dp"
         app:cardBackgroundColor="@android:color/white"
-        android:clickable="true">
+        android:clickable="true"
+        tools:ignore="KeyboardInaccessibleWidget">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,6 +72,7 @@
                     android:id="@+id/btn_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:baselineAligned="false"
                     android:text="Detail"
                     android:layout_marginTop="8dp"
                     android:backgroundTint="@color/green_500"
@@ -81,8 +83,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
 
                 <LinearLayout
                     android:layout_width="0dp"
