@@ -16,23 +16,26 @@ import com.example.repro.R;
 
 public class RiwayatDetailFragment extends Fragment {
 
-    private RiwayatDetailViewModel mViewModel;
+    private static final String ARG_ID_PEMASOK = "id_pemasok";
 
-    public static RiwayatDetailFragment newInstance() {
-        return new RiwayatDetailFragment();
+    public static RiwayatDetailFragment newInstance(int idPemasok) {
+        RiwayatDetailFragment fragment = new RiwayatDetailFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_ID_PEMASOK, idPemasok);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+
+        // Ambil ID Pemasok yang dikirim melalui Bundle
+        int idPemasok = getArguments().getInt(ARG_ID_PEMASOK);
+
+        // Inflate layout dan lakukan operasi lain yang diperlukan
+
         return inflater.inflate(R.layout.fragment_riwayat_detail, container, false);
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(RiwayatDetailViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }

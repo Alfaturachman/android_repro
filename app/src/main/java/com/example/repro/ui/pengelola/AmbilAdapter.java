@@ -28,7 +28,7 @@ public class AmbilAdapter extends RecyclerView.Adapter<AmbilAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Ambil ambil = ambilList.get(position);
-        holder.textView.setText(ambil.getNamaPemasok()); // Ganti `getNama()` dengan atribut data yang sesuai
+        holder.textView.setText(ambil.getNamaPemasok());
     }
 
     @Override
