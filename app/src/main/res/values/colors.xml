@@ -13,9 +13,7 @@
     <color name="obsidian">#031602</color>
     <color name="lava_black">#352f36</color>
 
-    <color name="red_200">#fecaca</color>
-    <color name="red_500">#ef3c3b</color>
-    <color name="green_100">#dbfdeb</color>
-    <color name="green_200">#b2ffd9</color>
-    <color name="green_500">#00aa5a</color>
+    <color name="red">#ff5e5b</color>
+    <color name="yellow">#fbb41a</color>
+    <color name="green">#2bc999</color>
 </resources>
