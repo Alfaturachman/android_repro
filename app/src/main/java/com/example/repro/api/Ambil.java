@@ -1,4 +1,4 @@
-package com.example.repro;
+package com.example.repro.api;
 import com.google.gson.annotations.SerializedName;
 public class Ambil {
 

@@ -1,4 +1,4 @@
-package com.example.repro;
+package com.example.repro.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.repro.Ambil;
-import com.example.repro.ApiService;
-import com.example.repro.RetrofitClient;
+import com.example.repro.api.Ambil;
+import com.example.repro.api.ApiService;
+import com.example.repro.api.RetrofitClient;
 
 import java.util.List;
 

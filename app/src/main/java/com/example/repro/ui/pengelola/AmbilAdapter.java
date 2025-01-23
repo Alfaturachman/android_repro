@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.repro.Ambil;
+import com.example.repro.api.Ambil;
 
 import java.util.List;
 

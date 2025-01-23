@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.repro.ApiService;
-import com.example.repro.MainActivity;
+import com.example.repro.api.ApiService;
+import com.example.repro.api.MainActivity;
 import com.example.repro.R;
-import com.example.repro.RetrofitClient;
+import com.example.repro.api.RetrofitClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;

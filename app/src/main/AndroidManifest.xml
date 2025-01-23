@@ -34,7 +34,7 @@
             android:exported="true"
             android:theme="@style/Theme.Repro.NoActionBar"></activity> <!-- MainActivity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".api.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Repro.NoActionBar"></activity>
     </application>

@@ -4,57 +4,65 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.repro.Ambil;
+import com.example.repro.api.ApiService;
 import com.example.repro.R;
+import com.example.repro.api.RetrofitClient;
+import com.example.repro.api.ApiResponse;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PengelolaFragment extends Fragment {
-    private PengelolaViewModel pengelolaViewModel;
+    private RecyclerView recyclerView;
+    private PemasokAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_pengelola, container, false);
 
-        TextView textView = root.findViewById(R.id.text_pengelola);
-        TableLayout tableLayout = root.findViewById(R.id.table_layout);
+        recyclerView = root.findViewById(R.id.recyclerViewDaftarPemasok); // Menggunakan `root` untuk menemukan ID
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // Mengatur layout manager RecyclerView
 
-        pengelolaViewModel = new ViewModelProvider(this).get(PengelolaViewModel.class);
-
-        // Set the initial text
-        pengelolaViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
-        // Observe data and add rows dynamically
-        pengelolaViewModel.getAmbil().observe(getViewLifecycleOwner(), ambilList -> {
-            if (ambilList != null) {
-                for (Ambil ambil : ambilList) {
-                    TableRow row = new TableRow(getContext());
-
-                    // ID Column
-                    TextView idTextView = new TextView(getContext());
-                    idTextView.setText(String.valueOf(ambil.getIdAmbil())); // Ganti dengan atribut ID yang sesuai
-                    idTextView.setPadding(8, 8, 8, 8);
-                    row.addView(idTextView);
-
-                    // Nama Column
-                    TextView namaTextView = new TextView(getContext());
-                    namaTextView.setText(ambil.getNamaPemasok()); // Ganti dengan atribut Nama yang sesuai
-                    namaTextView.setPadding(8, 8, 8, 8);
-                    row.addView(namaTextView);
-
-                    tableLayout.addView(row);
-                }
-            }
-        });
+        fetchPemasokData(); // Memanggil data dari API
 
         return root;
+    }
+
+    private void fetchPemasokData() {
+        // Menggunakan instance Retrofit dari RetrofitClient
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+
+        Call<ApiResponse<List<Pemasok>>> call = apiService.getPemasokList();
+        call.enqueue(new Callback<ApiResponse<List<Pemasok>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<List<Pemasok>>> call, Response<ApiResponse<List<Pemasok>>> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().isStatus()) {
+                    // Data berhasil diambil
+                    List<Pemasok> pemasokList = response.body().getData();
+                    adapter = new PemasokAdapter(getContext(), pemasokList);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    Toast.makeText(getContext(), "Data tidak ditemukan", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<List<Pemasok>>> call, Throwable t) {
+                // Handle kegagalan mengambil data
+                Toast.makeText(getContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

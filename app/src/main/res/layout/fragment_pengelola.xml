@@ -1,52 +1,49 @@
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#f2f2f2">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/text_pengelola"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="Data Pengelola"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TableLayout
-            android:id="@+id/table_layout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="1"
-            android:padding="8dp"
-            android:shrinkColumns="1">
-            <!-- Header Row -->
-            <TableRow>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No"
-                    android:padding="8dp"
-                    android:textStyle="bold" />
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama"
-                    android:padding="8dp"
-                    android:textStyle="bold" />
+            <!-- Heading atau Judul -->
+            <TextView
+                android:id="@+id/title_checkout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Daftar Produk"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:paddingBottom="16dp"
+                android:textColor="#000" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Keterangan"
-                    android:padding="8dp"
-                    android:textStyle="bold" />
-            </TableRow>
-        </TableLayout>
-    </LinearLayout>
-</ScrollView>
+            <!-- RecyclerView untuk Produk -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewDaftarPemasok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/daftar_pemasok" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
